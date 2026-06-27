@@ -1,65 +1,87 @@
-import Image from "next/image";
+import Link from "next/link";
+import { CRITTERS } from "@/lib/critters";
+import CritterCard from "@/app/components/CritterCard";
+import ProgressStat from "@/app/components/ProgressStat";
 
 export default function Home() {
+  const preview = CRITTERS.slice(0, 3);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <span className="eyebrow">Campus Alternate Reality Game</span>
+        <h1>Scan a code. Meet a critter. Explore campus.</h1>
+        <p className="lede">
+          CalCritters hides characters around campus behind QR codes. Find one,
+          scan it, and strike up a conversation with a creature that has its own
+          personality, home, and stories to tell.
+        </p>
+        <div className="hero-actions">
+          <Link href="/critters" className="btn btn-primary">
+            Open the Critterdex
+          </Link>
+          <Link href="/qr" className="btn btn-ghost">
+            I&apos;m running an event
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="hero-stats">
+          <ProgressStat />
+          <div className="stat">
+            <div className="num">{CRITTERS.length}</div>
+            <div className="label">Critters on campus</div>
+          </div>
+          <div className="stat">
+            <div className="num">150+</div>
+            <div className="label">Players reached</div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>How it works</h2>
+        </div>
+        <div className="steps">
+          <div className="step">
+            <span className="num">01</span>
+            <h3>Find a QR code</h3>
+            <p>
+              Organizers place critter codes at real campus landmarks, from the
+              bell tower to the creek.
+            </p>
+          </div>
+          <div className="step">
+            <span className="num">02</span>
+            <h3>Meet the critter</h3>
+            <p>
+              Scanning opens that critter&apos;s page and adds it to your
+              Critterdex. Each one is unlocked by visiting in person.
+            </p>
+          </div>
+          <div className="step">
+            <span className="num">03</span>
+            <h3>Have a chat</h3>
+            <p>
+              Talk with the critter in real time. Every character responds in its
+              own voice, powered by a language model.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <h2>A few of the locals</h2>
+          <Link href="/critters" className="chip">
+            See all {CRITTERS.length} →
+          </Link>
+        </div>
+        <div className="critter-grid">
+          {preview.map((critter) => (
+            <CritterCard key={critter.slug} critter={critter} found />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
