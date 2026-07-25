@@ -1,12 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { CRITTERS } from "@/lib/critters";
-import { useFound, useHydrated } from "@/lib/progress";
+import { resetFound, useFound, useHydrated } from "@/lib/progress";
 import CritterCard from "@/app/components/CritterCard";
 
 export default function CritterdexPage() {
   const found = useFound();
   const hydrated = useHydrated();
+  const [confirming, setConfirming] = useState(false);
+
+  function handleReset() {
+    if (!confirming) {
+      setConfirming(true);
+      return;
+    }
+    resetFound();
+    setConfirming(false);
+  }
 
   return (
     <>
@@ -18,6 +29,17 @@ export default function CritterdexPage() {
             ? `You've met ${found.length} of ${CRITTERS.length}. Discover the rest by finding their QR codes around campus.`
             : `${CRITTERS.length} critters are hiding around campus.`}
         </p>
+        {hydrated && found.length > 0 && (
+          <button
+            type="button"
+            className="btn btn-ghost"
+            style={{ width: "fit-content" }}
+            onClick={handleReset}
+            onBlur={() => setConfirming(false)}
+          >
+            {confirming ? "Click again to confirm reset" : "Reset Critterdex"}
+          </button>
+        )}
       </section>
 
       <section className="section" style={{ marginTop: 40 }}>

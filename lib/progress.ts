@@ -38,6 +38,17 @@ export function markFound(slug: string): void {
   }
 }
 
+/** Clears all discovered critters. Used by the "reset Critterdex" control. */
+export function resetFound(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+    window.dispatchEvent(new CustomEvent(CHANGED_EVENT));
+  } catch {
+    // Storage can be unavailable (private mode); nothing to reset in that case.
+  }
+}
+
 export function onFoundChange(listener: () => void): () => void {
   if (typeof window === "undefined") return () => {};
   const handler = () => listener();
