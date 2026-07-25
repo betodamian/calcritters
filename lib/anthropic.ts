@@ -145,6 +145,16 @@ const FALLBACK: Record<
       "Perspective's the best thing up here. Everything looks smaller than it felt.",
     ],
   },
+  "memorial-gopher": {
+    greeting: ["*pokes head out* Oh hey, welcome to the glade. Sun's great today."],
+    name: ["Nice, got it. I'll remember you next time you're crossing the lawn."],
+    support: ["Rough one, huh? Come sit in the grass a minute. Nothing's fixed by rushing it."],
+    farewell: ["Later! I'll be under here somewhere if you swing back through."],
+    idle: [
+      "Frisbee landed a little too close to my burrow again today. Occupational hazard.",
+      "This lawn gets sun first right along the east edge, if you're looking for a spot.",
+    ],
+  },
 };
 
 function pick(options: string[], seed: number): string {
