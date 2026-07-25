@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CRITTERS, getCritter } from "@/lib/critters";
 import CritterChat from "./CritterChat";
+import ShareLink from "@/app/components/ShareLink";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -69,6 +70,10 @@ export default async function CritterPage({ params }: PageProps) {
           <div className="loc-name">{critter.location}</div>
           <div className="loc-hint">{critter.locationHint}</div>
         </div>
+      </div>
+
+      <div style={{ marginBottom: 22 }}>
+        <ShareLink slug={critter.slug} name={critter.name} />
       </div>
 
       <CritterChat critter={critter} />
