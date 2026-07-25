@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -19,10 +20,26 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
+const title = "CalCritters · Campus AR Adventure";
+const description =
+  "An interactive campus alternate reality game. Scan QR codes around campus to meet AI-driven critters, each with its own personality and home.";
+
 export const metadata: Metadata = {
-  title: "CalCritters · Campus AR Adventure",
-  description:
-    "An interactive campus alternate reality game. Scan QR codes around campus to meet AI-driven critters, each with its own personality and home.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: SITE_URL,
+    siteName: "CalCritters",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({
