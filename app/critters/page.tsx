@@ -9,6 +9,7 @@ export default function CritterdexPage() {
   const found = useFound();
   const hydrated = useHydrated();
   const [confirming, setConfirming] = useState(false);
+  const complete = hydrated && found.length === CRITTERS.length;
 
   function handleReset() {
     if (!confirming) {
@@ -41,6 +42,13 @@ export default function CritterdexPage() {
           </button>
         )}
       </section>
+
+      {complete && (
+        <div className="notice" style={{ borderColor: "var(--gold)", marginTop: 36 }}>
+          🎉 You&apos;ve met every critter on campus! Thanks for exploring every corner
+          of Berkeley to find them.
+        </div>
+      )}
 
       <section className="section" style={{ marginTop: 40 }}>
         <div className="critter-grid">
