@@ -28,11 +28,21 @@ export default function CritterChat({ critter }: { critter: Critter }) {
 
   const historyRef = useRef<ApiMessage[]>([]);
   const logRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Visiting the page is how a critter is "discovered".
   useEffect(() => {
     markFound(critter.slug);
   }, [critter.slug]);
+
+  // Let players start typing right away instead of having to click in first.
+  // Skipped on small/touch screens so it doesn't yank the page and pop the
+  // keyboard open before the player has read the critter's greeting.
+  useEffect(() => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      inputRef.current?.focus();
+    }
+  }, []);
 
   // Keep the conversation scrolled to the newest message.
   useEffect(() => {
@@ -134,6 +144,7 @@ export default function CritterChat({ critter }: { critter: Critter }) {
 
       <form className="chat-form" onSubmit={send}>
         <input
+          ref={inputRef}
           className="chat-input"
           value={input}
           onChange={(event) => setInput(event.target.value)}
