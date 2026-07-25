@@ -69,6 +69,17 @@ export default async function CritterPage({ params }: PageProps) {
         <div>
           <div className="loc-name">{critter.location}</div>
           <div className="loc-hint">{critter.locationHint}</div>
+          <a
+            className="chip"
+            style={{ marginTop: 10, display: "inline-block" }}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              `${critter.location}, UC Berkeley`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get directions →
+          </a>
         </div>
       </div>
 
