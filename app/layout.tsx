@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Space_Grotesk, Space_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -40,6 +40,13 @@ export const metadata: Metadata = {
     title,
     description,
   },
+};
+
+// Matches the app's dark background so the browser UI (mobile status bar,
+// PWA splash background, install prompts) doesn't flash white on load.
+export const viewport: Viewport = {
+  themeColor: "#0b0d12",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
