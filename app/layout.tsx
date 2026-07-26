@@ -79,6 +79,16 @@ export default function RootLayout({
               •
             </span>
             <span>A campus alternate reality game</span>
+            <span className="footer-dot" aria-hidden="true">
+              •
+            </span>
+            <a
+              href="https://github.com/betodamian/calcritters"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View source
+            </a>
           </footer>
         </div>
       </body>
