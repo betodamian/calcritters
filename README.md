@@ -11,8 +11,9 @@ adding a key powers live, model-driven conversations.
 
 ## Features
 
-- **Seven critters** stationed at recognizable campus locations, from the bell
-  tower to the creek to the fire trails.
+- **Eight critters** stationed at recognizable campus locations, from the bell
+  tower to the creek to the fire trails to the fountain outside the student
+  union.
 - **Live chat** with every critter through a streaming Claude API endpoint, each
   character driven by its own system prompt.
 - **Demo mode** that keeps the whole experience working with zero configuration,
