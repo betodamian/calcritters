@@ -108,8 +108,9 @@ URL.
 ## Scripts
 
 ```bash
-npm run dev      # start the dev server
-npm run build    # production build
-npm run start    # run the production build
-npm run lint     # lint the project
+npm run dev        # start the dev server
+npm run build      # production build
+npm run start      # run the production build
+npm run lint       # lint the project
+npm run typecheck  # run the TypeScript compiler with no output
 ```
