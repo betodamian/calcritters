@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import RandomCritterLink from "@/app/components/RandomCritterLink";
 
 export const metadata: Metadata = {
   title: "Critter not found · CalCritters",
@@ -14,9 +15,12 @@ export default function NotFound() {
         We couldn&apos;t find what you were looking for. It may not exist yet, or
         the trail went cold.
       </p>
-      <Link href="/critters" className="btn btn-primary">
-        Open the Critterdex
-      </Link>
+      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+        <Link href="/critters" className="btn btn-primary">
+          Open the Critterdex
+        </Link>
+        <RandomCritterLink />
+      </div>
     </div>
   );
 }
