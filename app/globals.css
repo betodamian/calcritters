@@ -758,3 +758,10 @@ h3 {
     background-position: 0 50%;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
